@@ -1,0 +1,5 @@
+{{#conditional-loading-spinner condition=isLoadingSiteSettings}}
+  {{#each siteSettings as |setting|}}
+    {{site-setting setting=setting}}
+  {{/each}}
+{{/conditional-loading-spinner}}

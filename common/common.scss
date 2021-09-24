@@ -1,0 +1,17 @@
+.d-wrap[data-wrap="wizard"] {
+  border: 5px solid var(--primary-low);
+  margin: 1em 0;
+  padding: 1em;
+  font-size: var(--font-0);
+  background: var(--secondary);
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  overflow-y: scroll;
+
+  .setting:nth-child(1) {
+    h3 {
+      margin-top: 0;
+    }
+  }
+}

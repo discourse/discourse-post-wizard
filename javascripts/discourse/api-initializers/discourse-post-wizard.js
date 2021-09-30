@@ -1,28 +1,31 @@
 import { apiInitializer } from "discourse/lib/api";
 
 export default apiInitializer("0.11.1", (api) => {
-  api.decorateCookedElement((element) => {
-    const wizards = element.querySelectorAll("[data-wrap='wizard']");
+  api.decorateCookedElement(
+    (element) => {
+      const wizards = element.querySelectorAll("[data-wrap='wizard']");
 
-    if (!wizards.length) {
-      return;
-    }
-
-    wizards.forEach((wizard) => {
-      if (!api.getCurrentUser()?.admin) {
-        wizard.remove();
+      if (!wizards.length) {
         return;
       }
 
-      const settingsList = (wizard.dataset.settings || "")
-        .split(",")
-        .filter(Boolean);
+      wizards.forEach((wizard) => {
+        if (!api.getCurrentUser()?.admin) {
+          wizard.remove();
+          return;
+        }
 
-      const component = api.container.owner
-        .factoryFor("component:post-wizard")
-        .create({ settingsList });
+        const settingsList = (wizard.dataset.settings || "")
+          .split(",")
+          .filter(Boolean);
 
-      component.renderer.appendTo(component, wizard);
-    });
-  });
+        const component = api.container.owner
+          .factoryFor("component:post-wizard")
+          .create({ settingsList });
+
+        component.renderer.appendTo(component, wizard);
+      });
+    },
+    { id: "discourse-post-wizard" }
+  );
 });

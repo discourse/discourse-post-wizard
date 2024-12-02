@@ -2,17 +2,17 @@
 // import { ajax } from "discourse/lib/ajax";
 // import { popupAjaxError } from "discourse/lib/ajax-error";
 import Component from "@ember/component";
+import { tagName } from "@ember-decorators/component";
 import SiteSetting from "admin/models/site-setting";
 
-export default Component.extend({
-  tagName: "",
-  layoutName: "components/post-wizard",
-  settingsList: null,
-  siteSettings: null,
-  isLoadingSiteSettings: false,
+@tagName("")
+export default class PostWizard extends Component {
+  settingsList;
+  siteSettings;
+  isLoadingSiteSettings = false;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
 
     this.set("isLoadingSiteSettings", true);
 
@@ -29,5 +29,5 @@ export default Component.extend({
       .finally(() => {
         this.set("isLoadingSiteSettings", false);
       });
-  },
-});
+  }
+}

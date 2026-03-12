@@ -1,8 +1,9 @@
+/* eslint-disable ember/no-classic-components */
 import Component from "@ember/component";
 import { tagName } from "@ember-decorators/component";
+import SiteSetting from "discourse/admin/components/site-setting";
+import SiteSettingModel from "discourse/admin/models/site-setting";
 import ConditionalLoadingSpinner from "discourse/components/conditional-loading-spinner";
-import SiteSetting from "admin/components/site-setting";
-import SiteSettingModel from "admin/models/site-setting";
 
 @tagName("")
 export default class PostWizard extends Component {
